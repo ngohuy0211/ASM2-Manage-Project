@@ -1,0 +1,64 @@
+﻿@model IEnumerable<ManageProject.Models.Course>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+@using (Html.BeginForm("Search", "Courses")) {
+    <div>
+        Search by CourseID! @Html.Editor("huy")
+    </div>
+    <input type="submit" value="Search">
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CourseName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CourseDetail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CourseCategory.CourseCategoryName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Topic.TopicName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Trainer.TrainerName)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CourseName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CourseDetail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CourseCategory.CourseCategoryName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Topic.TopicName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Trainer.TrainerName)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.CourseID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.CourseID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.CourseID })
+            </td>
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,36 @@
+﻿@using ManageProject.Models
+@model IEnumerable<AspNetUser>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<table class="table">
+    <tr>
+        <td>
+            UserName
+        </td>
+        <td>
+            Email
+        </td>
+        <td></td>
+    </tr>
+
+    @foreach (var account in Model)
+    {
+        <tr>
+            <td>
+                @account.UserName
+            </td>
+            <td>
+                @account.Email
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = account.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = account.Id })
+            </td>
+        </tr>
+    }
+</table>
+
+

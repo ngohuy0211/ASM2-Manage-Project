@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="74235ac4ec274df4bdb5e0b72c14f23c" Name="Diagram1">
+        <EntityTypeShape EntityType="ManageASMModel.Course" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="ManageASMModel.CourseCategory" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ManageASMModel.Enrollment" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ManageASMModel.Staff" Width="1.5" PointX="6.25" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ManageASMModel.Topic" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ManageASMModel.Trainee" Width="1.5" PointX="3" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ManageASMModel.Trainer" Width="1.5" PointX="0.75" PointY="7.5" IsExpanded="true" />
+        <AssociationConnector Association="ManageASMModel.FK__Course__CourseCa__33D4B598" ManuallyRouted="false" />
+        <AssociationConnector Association="ManageASMModel.FK__Course__TopicID__35BCFE0A" ManuallyRouted="false" />
+        <AssociationConnector Association="ManageASMModel.FK__Course__TrainerI__34C8D9D1" ManuallyRouted="false" />
+        <AssociationConnector Association="ManageASMModel.FK__Enrollmen__Cours__398D8EEE" ManuallyRouted="false" />
+        <AssociationConnector Association="ManageASMModel.FK__Enrollmen__Train__38996AB5" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="ManageASMModel.AspNetUser" Width="1.5" PointX="8.5" PointY="5.5" />
+        <AssociationConnector Association="ManageASMModel.FK__Staff__UserID__1FCDBCEB" />
+        <AssociationConnector Association="ManageASMModel.FK__Trainee__UserID__25869641" />
+        <AssociationConnector Association="ManageASMModel.FK__Trainer__UserID__22AA2996" />
+        <EntityTypeShape EntityType="ManageASMModel.AspNetUserRole" Width="1.5" PointX="10.375" PointY="5" />
+        <AssociationConnector Association="ManageASMModel.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

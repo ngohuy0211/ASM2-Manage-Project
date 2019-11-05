@@ -1,0 +1,65 @@
+﻿@model IEnumerable<ManageProject.Models.Staff>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+@using (Html.BeginForm("Search", "Staffs"))
+{
+    <div>
+        Search by StaffID! @Html.Editor("huy")
+    </div>
+    <input type="submit" value="Search">
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.StaffID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StaffName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StaffPhone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StaffAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StaffEmail)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.StaffID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StaffName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StaffPhone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StaffAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StaffEmail)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.StaffID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.StaffID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.StaffID })
+            </td>
+        </tr>
+    }
+
+</table>
