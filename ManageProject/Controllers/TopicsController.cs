@@ -126,5 +126,10 @@ namespace ManageProject.Controllers
             }
             base.Dispose(disposing);
         }
+        public ActionResult Search(string huy)
+        {
+            var topics = db.Topics.Where(c => c.TopicID.Contains(huy));
+            return View("Index", topics);
+        }
     }
 }

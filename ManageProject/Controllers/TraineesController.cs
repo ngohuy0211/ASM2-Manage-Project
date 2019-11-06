@@ -36,6 +36,7 @@ namespace ManageProject.Controllers
         }
 
         // GET: Trainees/Create
+        [Authorize(Roles = "Admin, Staff")]
         public ActionResult Create()
         {
             ViewBag.trainee = new SelectList(db.AspNetUsers, "Id", "Email");
@@ -60,6 +61,7 @@ namespace ManageProject.Controllers
         }
 
         // GET: Trainees/Edit/5
+        [Authorize(Roles = "Admin, Staff")]
         public ActionResult Edit(string id)
         {
             if (id == null)
@@ -91,6 +93,7 @@ namespace ManageProject.Controllers
         }
 
         // GET: Trainees/Delete/5
+        [Authorize(Roles = "Admin, Staff")]
         public ActionResult Delete(string id)
         {
             if (id == null)
@@ -123,6 +126,11 @@ namespace ManageProject.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+        public ActionResult Search(string huy)
+        {
+            var trainees = db.Trainees.Where(c => c.TraineeID.Contains(huy));
+            return View("Index", trainees);
         }
     }
 }

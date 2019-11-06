@@ -36,6 +36,7 @@ namespace ManageProject.Controllers
         }
 
         // GET: CourseCategories/Create
+        [Authorize(Roles = "Staff")]
         public ActionResult Create()
         {
             return View();
@@ -59,6 +60,7 @@ namespace ManageProject.Controllers
         }
 
         // GET: CourseCategories/Edit/5
+        [Authorize(Roles = "Staff")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -90,6 +92,7 @@ namespace ManageProject.Controllers
         }
 
         // GET: CourseCategories/Delete/5
+        [Authorize(Roles = "Staff")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -122,6 +125,11 @@ namespace ManageProject.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+        public ActionResult Search(string huy)
+        {
+            var category = db.CourseCategories.Where(c => c.CourseCategoryName.Contains(huy));
+            return View("Index", category);
         }
     }
 }

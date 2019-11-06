@@ -17,7 +17,14 @@ namespace ManageProject.Controllers
         // GET: Trainers
         public ActionResult Index()
         {
-            return View(db.Trainers.ToList());
+            if (User.IsInRole("Trainer"))
+            {
+                var trainer1 = db.Trainers.Where(c => c.AspNetUser.Email.Equals(User.Identity.Name));
+                return View(trainer1);
+            }
+            var trainer = db.Trainers.ToList();
+            return View(trainer);
+            //return View(db.Trainers.ToList());
         }
 
         // GET: Trainers/Details/5
@@ -127,6 +134,11 @@ namespace ManageProject.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+        public ActionResult Search(string huy)
+        {
+            var trainers = db.Trainers.Where(c => c.TrainerID.Contains(huy));
+            return View("Index", trainers);
         }
     }
 }

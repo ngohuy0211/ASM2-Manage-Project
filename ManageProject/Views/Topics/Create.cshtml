@@ -20,6 +20,7 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.TopicID, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.TopicID, "", new { @class = "text-danger" })
+                <div style="color: #dddddd;">Max = 8 words!</div>
             </div>
         </div>
 

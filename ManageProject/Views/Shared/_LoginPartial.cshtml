@@ -42,7 +42,16 @@
                 @Html.ActionLink("List_Trainer", "Index", "Trainers", routeValues: null, htmlAttributes: new { id = "registerLink" })
             </li>
             <li>
+                @Html.ActionLink("List_Trainee", "Index", "Trainees", routeValues: null, htmlAttributes: new { id = "registerLink" })
+            </li>
+            <li>
                 @Html.ActionLink("List_Courses", "Index", "Courses", routeValues: null, htmlAttributes: new { id = "registerLink" })
+            </li>
+            <li>
+                @Html.ActionLink("List_CoursesCategory", "Index", "CourseCategories", routeValues: null, htmlAttributes: new { id = "registerLink" })
+            </li>
+            <li>
+                @Html.ActionLink("List_Enrollment", "Index", "Enrollments", routeValues: null, htmlAttributes: new { id = "registerLink" })
             </li>
         </ul>
     }
@@ -53,7 +62,18 @@
                 @Html.ActionLink("List_Courses", "Index", "Courses", routeValues: null, htmlAttributes: new { id = "registerLink" })
             </li>
             <li>
-                @Html.ActionLink("Update_Profile", "Index", "Trainers", routeValues: null, htmlAttributes: new { id = "registerLink" })
+                @Html.ActionLink("List_Enrollment", "Index", "Enrollments", routeValues: null, htmlAttributes: new { id = "registerLink" })
+            </li>
+            <li>
+                @Html.ActionLink("Profile", "Index", "Trainers", routeValues: null, htmlAttributes: new { id = "registerLink" })
+            </li>
+        </ul>
+    }
+    if(User.IsInRole("Trainee"))
+    {
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                @Html.ActionLink("List_Enrollment", "Index", "Enrollments", routeValues: null, htmlAttributes: new { id = "registerLink"})
             </li>
         </ul>
     }

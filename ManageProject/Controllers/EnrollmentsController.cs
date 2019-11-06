@@ -37,9 +37,10 @@ namespace ManageProject.Controllers
         }
 
         // GET: Enrollments/Create
+        [Authorize(Roles = "Staff")]
         public ActionResult Create()
         {
-            ViewBag.CourseID = new SelectList(db.Courses, "CourseID", "TrainerID");
+            ViewBag.CourseID = new SelectList(db.Courses, "CourseID");
             ViewBag.TraineeID = new SelectList(db.Trainees, "TraineeID", "TraineeName");
             return View();
         }
@@ -64,6 +65,7 @@ namespace ManageProject.Controllers
         }
 
         // GET: Enrollments/Edit/5
+        [Authorize(Roles = "Staff")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -85,7 +87,7 @@ namespace ManageProject.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "EnrollmentID,TraineeID,CourseID,Grade")] Enrollment enrollment)
+        public ActionResult Edit([Bind(Include = "EnrollmentID,TraineeID,TraineeName,CourseID,Grade")] Enrollment enrollment)
         {
             if (ModelState.IsValid)
             {
@@ -99,6 +101,7 @@ namespace ManageProject.Controllers
         }
 
         // GET: Enrollments/Delete/5
+        [Authorize(Roles = "Staff")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
