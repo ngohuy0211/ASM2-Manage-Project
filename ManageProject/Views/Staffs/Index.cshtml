@@ -55,9 +55,16 @@
                 @Html.DisplayFor(modelItem => item.StaffEmail)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.StaffID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.StaffID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.StaffID })
+                @if (User.IsInRole("Staff"))
+                {
+                    @Html.ActionLink("Details", "Details", new { id = item.StaffID })
+                }
+                else if (User.IsInRole("Admin"))
+                {
+                    @Html.ActionLink("Edit |", "Edit", new { id = item.StaffID })
+                    @Html.ActionLink(" Details |", "Details", new { id = item.StaffID })
+                    @Html.ActionLink(" Delete", "Delete", new { id = item.StaffID })
+                }
             </td>
         </tr>
     }

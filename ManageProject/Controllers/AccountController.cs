@@ -170,7 +170,7 @@ namespace ManageProject.Controllers
                     //Assign Role to user Here      
                     await this.UserManager.AddToRoleAsync(user.Id, model.UserRoles);
                     //Ends Here    
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Login");
                 }
                 ViewBag.Name = new SelectList(context.Roles.Where(u => !u.Name.Contains("Admin"))
                                           .ToList(), "Name", "Name");
@@ -443,11 +443,12 @@ namespace ManageProject.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-        //public ActionResult Edit(string id)
-        //{
-        //    var edit = db.AspNetUsers.Find(id);
-        //    return View(edit);
-        //}
+        
+        public ActionResult Search(string huy)
+        {
+            var accounts = db.AspNetUsers.Where(c => c.UserName.Contains(huy));
+            return View("Index", accounts);
+        }
         #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";

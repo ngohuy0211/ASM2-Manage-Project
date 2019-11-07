@@ -17,8 +17,17 @@ namespace ManageProject.Controllers
         // GET: Courses
         public ActionResult Index()
         {
-            var courses = db.Courses.Include(c => c.CourseCategory).Include(c => c.Topic).Include(c => c.Trainer);
-            return View(courses.ToList());
+            if (User.IsInRole("Trainer"))
+            {
+                var courses = db.Courses.Where(c => c.Trainer.AspNetUser.UserName.Equals(User.Identity.Name));
+                return View(courses);
+            }
+            else
+            {
+                var courses = db.Courses.ToList();
+                return View(courses);
+            }
+
         }
 
         // GET: Courses/Details/5
@@ -141,7 +150,7 @@ namespace ManageProject.Controllers
         }
         public ActionResult Search(string huy)
         {
-            var courses = db.Courses.Where(c => c.CourseID.Contains(huy));
+            var courses = db.Courses.Where(c => c.CourseName.Contains(huy));
             return View("Index", courses);
         }
     }

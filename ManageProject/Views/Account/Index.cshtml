@@ -5,6 +5,13 @@
 }
 
 <h2>Index</h2>
+@using (Html.BeginForm("Search", "Account"))
+{
+    <div>
+        Search by username! @Html.Editor("huy")
+    </div>
+    <input type="submit" value="Search"/>
+}
 <table class="table">
     <tr>
         <td>
@@ -26,7 +33,8 @@
                 @account.Email
             </td>
             <td>
-                @Html.ActionLink("Delete", "Delete", new { id = account.Id })
+                @Html.ActionLink("Delete |", "Delete", new { id = account.Id })
+                @Html.ActionLink("Edit", "Edit", new { id = account.Id })
             </td>
         </tr>
     }

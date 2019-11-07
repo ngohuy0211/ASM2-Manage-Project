@@ -6,9 +6,6 @@
 
 <h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 @using (Html.BeginForm("Search", "Trainers"))
 {
     <div>
@@ -55,9 +52,20 @@
                 @Html.DisplayFor(modelItem => item.TrainerEmail)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.TrainerID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.TrainerID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.TrainerID })
+                @if (User.IsInRole("Trainer"))
+                {
+                    @Html.ActionLink("Details", "Details", new { id = item.TrainerID })
+                }
+                else if (User.IsInRole("Admin"))
+                {
+                    @Html.ActionLink("Edit |", "Edit", new { id = item.TrainerID })
+                    @Html.ActionLink(" Details |", "Details", new { id = item.TrainerID })
+                    @Html.ActionLink(" Delete", "Delete", new { id = item.TrainerID })
+                }
+                else if (User.IsInRole("Staff"))
+                {
+                    @Html.ActionLink(" Details", "Details", new { id = item.TrainerID })
+                }
             </td>
         </tr>
     }

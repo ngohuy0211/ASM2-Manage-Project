@@ -11,7 +11,7 @@
 </p>
 @using (Html.BeginForm("Search", "Courses")) {
     <div>
-        Search by CourseID! @Html.Editor("huy")
+        Search by CourseName! @Html.Editor("huy")
     </div>
     <input type="submit" value="Search">
 }
@@ -54,9 +54,22 @@
                 @Html.DisplayFor(modelItem => item.Trainer.TrainerName)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.CourseID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.CourseID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.CourseID })
+                @if (User.IsInRole("Trainer"))
+                {
+                    @Html.ActionLink("Details", "Details", new { id = item.CourseID })
+                }
+                else if (User.IsInRole("Admin"))
+                {
+                    @Html.ActionLink("Edit | ", "Edit", new { id = item.CourseID })
+                    @Html.ActionLink("Details |", "Details", new { id = item.CourseID })
+                    @Html.ActionLink("Delete", "Delete", new { id = item.CourseID })
+                }
+                else if (User.IsInRole("Staff"))
+                {
+                    @Html.ActionLink("Edit | ", "Edit", new { id = item.CourseID })
+                    @Html.ActionLink(" Details |", "Details", new { id = item.CourseID })
+                    @Html.ActionLink(" Delete", "Delete", new { id = item.CourseID })
+                }
             </td>
         </tr>
     }

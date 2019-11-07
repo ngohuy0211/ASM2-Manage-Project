@@ -19,7 +19,7 @@ namespace ManageProject.Controllers
         {
             if (User.IsInRole("Trainer"))
             {
-                var trainer1 = db.Trainers.Where(c => c.AspNetUser.Email.Equals(User.Identity.Name));
+                var trainer1 = db.Trainers.Where(c => c.AspNetUser.UserName.Equals(User.Identity.Name));
                 return View(trainer1);
             }
             var trainer = db.Trainers.ToList();
@@ -43,7 +43,7 @@ namespace ManageProject.Controllers
         }
 
         // GET: Trainers/Create
-        [Authorize(Roles = "Staff, Admin")]
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             ViewBag.trainer = new SelectList(db.AspNetUsers, "Id", "Email");
@@ -68,7 +68,7 @@ namespace ManageProject.Controllers
         }
 
         // GET: Trainers/Edit/5
-        [Authorize(Roles = "Staff, Admin")]
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(string id)
         {
             if (id == null)
@@ -100,7 +100,7 @@ namespace ManageProject.Controllers
         }
 
         // GET: Trainers/Delete/5
-        [Authorize(Roles = "Staff, Admin")]
+        [Authorize(Roles = "Admin")]
 
         public ActionResult Delete(string id)
         {

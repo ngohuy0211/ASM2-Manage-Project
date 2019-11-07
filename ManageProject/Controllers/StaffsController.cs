@@ -16,8 +16,15 @@ namespace ManageProject.Controllers
 
         // GET: Staffs
         public ActionResult Index()
-        {
-            return View(db.Staffs.ToList());
+        {   
+            if (User.IsInRole("Staff"))
+            {
+                var staff11 = db.Staffs.Where(c => c.AspNetUser.UserName.Equals(User.Identity.Name));
+                return View(staff11);
+            }
+            var staff = db.Staffs.ToList();
+            return View(staff);
+            //return View(db.Staffs.ToList());
         }
 
         // GET: Staffs/Details/5
